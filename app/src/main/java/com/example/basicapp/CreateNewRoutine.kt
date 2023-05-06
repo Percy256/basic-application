@@ -2,10 +2,12 @@ package com.example.basicapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+
 
 class CreateNewRoutine : AppCompatActivity() {
 
@@ -63,5 +65,18 @@ class CreateNewRoutine : AppCompatActivity() {
 
     fun Back(view: View) {
         finish()
+    }
+
+    fun SaveRoutine(view: View) {
+        val preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
+
+        val editor = preferences.edit()
+
+        editor.putString("value", routineInput.text.toString())
+
+        editor.apply()
+
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
     }
 }

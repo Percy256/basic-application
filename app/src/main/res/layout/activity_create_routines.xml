@@ -10,6 +10,7 @@
     <include layout="@layout/create_routes_bar"/>
 
     <LinearLayout
+        android:id="@+id/layouts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"

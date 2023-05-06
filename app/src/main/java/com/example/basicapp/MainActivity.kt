@@ -21,12 +21,21 @@ class MainActivity : AppCompatActivity() {
         //make the app open by default with the favourites fragment
         replaceFragment(Favorites())
 
+        val preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
+
+        val value = preferences.getString("value", "")
+
+        val bundle = Bundle()
+        bundle.putString("value", value)
+
+        val fragmentRoutines = Routines()
+        fragmentRoutines.arguments = bundle
 
         binding.bottomNavigationView3.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.favorites -> replaceFragment(Favorites())
                 R.id.things -> replaceFragment(Things())
-                R.id.routines -> replaceFragment(Routines())
+                R.id.routines -> replaceFragment(fragmentRoutines)
                 R.id.ideas -> replaceFragment(Ideas())
                 R.id.settings -> replaceFragment(Settings())
 
